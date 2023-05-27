@@ -6,6 +6,33 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { Book } from 'src/app/models/book.model';
 import { of } from 'rxjs';
 
+const listBook:Book[] = [
+    {
+        name: '',
+        author: '',
+        isbn: '',
+        price: 15,
+        amount: 2
+    },
+    {
+        name: '',
+        author: '',
+        isbn: '',
+        price: 10,
+        amount: 3
+    },
+    {
+        name: '',
+        author: '',
+        isbn: '',
+        price: 20,
+        amount: 5
+    }
+];
+
+const bookServiceMocked = {                         //Este objeto reemplazará al servicio original.
+    getBooks: ()=> of(listBook),
+}
 
 describe('Home component', ()=>{
     let component: HomeComponent;
@@ -20,7 +47,12 @@ describe('Home component', ()=>{
                 HomeComponent
             ],
             providers:[
-                BookService
+                //BookService,
+                {
+                    provide: BookService,           //Aqui se usa un objeto que reemplaza al servicio original. Este objeto seria
+                                                    //el servicio completo mockeado, con todos sus métodos.
+                    useValue: bookServiceMocked
+                }
             ],
             schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
         }).compileComponents();
@@ -35,6 +67,9 @@ describe('Home component', ()=>{
         expect(component).toBeTruthy();
     });
 
+    //===============================================================================
+    //Testear un observable mockeando UN metodo del servicio que se usa en el método.
+    //===============================================================================
     it('getBooks get books from the subscription',()=>{
         const bookService = fixture.debugElement.injector.get(BookService);
         const listBook: Book[] = [];                //se pasa un array vacio, pero tambien se podria pasar una const local con
@@ -44,6 +79,16 @@ describe('Home component', ()=>{
         component.getBooks();
         expect(spy1).toHaveBeenCalled();
         expect(component.listBook.length).toBe(0);
+    });
+ 
+    //===================================================================================
+    //Testear un observable mockeando el servicio completo y no solo un método del mismo.
+    //Aqui se está repitiendo el test anterior con fines didácticos.
+    //===================================================================================
+    it('getBooks (with the service mocked) get books from the subscription',()=>{
+        const bookService = fixture.debugElement.injector.get(BookService);
+        component.getBooks();
+        expect(component.listBook.length).toBe(3);
     });
 
 });
