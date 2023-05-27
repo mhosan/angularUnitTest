@@ -12,7 +12,7 @@ describe('reduce text pipe',()=>{
         expect(pipe).toBeTruthy();
     });
 
-    fit('use transform correctrly',()=>{
+    it('use transform correctrly',()=>{
         const text = 'Hello word, it is the text to check de pipe';
         const newText = pipe.transform(text,5);
         expect(newText.length).toBe(5);
