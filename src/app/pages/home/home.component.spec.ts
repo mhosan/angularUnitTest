@@ -1,7 +1,7 @@
 import { BookService } from './../../services/book.service';
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { HomeComponent } from "./home.component";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Pipe, PipeTransform } from "@angular/core";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { Book } from 'src/app/models/book.model';
 import { of } from 'rxjs';
@@ -34,6 +34,13 @@ const bookServiceMocked = {                         //Este objeto reemplazará a
     getBooks: ()=> of(listBook),
 }
 
+@Pipe({name: 'reduceText'})                         //Esto es el mock de un pipe. Luego declararlo en 'declarations'
+class ReduceTextPipeMock implements PipeTransform{
+    transform(): string {
+        return '';
+    }
+}
+
 describe('Home component', ()=>{
     let component: HomeComponent;
     let fixture: ComponentFixture<HomeComponent>;
@@ -44,7 +51,8 @@ describe('Home component', ()=>{
                 HttpClientTestingModule
             ],
             declarations: [
-                HomeComponent
+                HomeComponent,
+                ReduceTextPipeMock
             ],
             providers:[
                 //BookService,
