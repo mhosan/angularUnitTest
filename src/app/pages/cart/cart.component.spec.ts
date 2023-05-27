@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, inject } from "@angular/core/testing";
 import { CartComponent } from "./cart.component";
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {  CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
@@ -75,10 +75,16 @@ describe('Cart Component', ()=>{
 
     //===============================================================================================================
     //En un test se espera que ocurra algo. En este caso, se espera a que el componente sea instanciado correctamente
-    //===============================================================================================================
     it('Should create',()=>{                        
         expect(component).toBeTruthy();
     });
+    //hay otra forma de instanciar un componente o un servicio, distinta a la que se muestra en este ejemplo: Agregando
+    //el componente en 'declarations' y utilizando 'fixture' para instanciarlo,
+    //Esta otra forma consiste en declarar el componente en 'providers' y en el test de la siguiente forma:
+    // it('Should create',inject([CartComponent], (testComponent: CartComponent)=>{                        
+    //     expect(testComponent).toBeTruthy();
+    // }));
+    //===============================================================================================================
 
 
     //=========================================

@@ -68,7 +68,7 @@ describe('book service', ()=>{
 
         const req = httpMock.expectOne(environment.API_REST_URL + '/book');
         expect(req.request.method).toBe('GET');
-        req.flush(listBook);
+        req.flush(listBook);                        //este flush hace disparar la subscripcion de service.getBooks()
     });
 
 });
