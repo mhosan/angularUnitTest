@@ -1,4 +1,5 @@
 Proyecto para el curso de Udemy de test unitarios en Angular, con Jasmine y Karma. 27 de mayo de 2023.
+En la branch "withForm" hay un ejemplo de test unitario en un formulario reactivo.
 
 # BookListApp
 
