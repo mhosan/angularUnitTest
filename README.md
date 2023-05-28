@@ -1,16 +1,12 @@
-Project for the unit test course
+Proyecto para el curso de Udemy de test unitarios en Angular, con Jasmine y Karma. 27 de mayo de 2023.
 
 # BookListApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6, Node 16.10.0, npm 7.24.0.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
